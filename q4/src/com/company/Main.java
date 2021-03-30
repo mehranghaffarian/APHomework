@@ -15,17 +15,40 @@ public class Main {
 
         Methods ll = new Methods();
 
-        ll.add(1, head);
-        ll.add(2, head);
-        ll.addFirst(3, head);
+        ll.add(15, head);
+        ll.add(34, head);
+        ll.add(17, head);
+
+        ll.findMiddle(head);
+
+        ll.add(46, head);
+
+        ll.print(head);
+
+        ll.removeIndex(2, head);
+
+        ll.print(head);
+
         ll.addFirst(4, head);
-        ll.addFirst(5, head);
 
         ll.print(head);
 
         ll.findMiddle(head);
+
+        ll.removeIndex(20, head);
+
+        ll.contains(46, head);
+
+        ll.removeIndex(0, head);
+
+        ll.print(head);
+
+        ll.contains(4, head);
+
+        ll.removeMiddle(head);
+
+        ll.print(head);
+
+        String finish = "finish";
     }
-
-
-
 }
