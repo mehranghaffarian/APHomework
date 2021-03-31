@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
     public void add(int value, Node head){
         Node curr = head;
@@ -15,40 +17,33 @@ public class Main {
 
         Methods ll = new Methods();
 
-        ll.add(15, head);
-        ll.add(34, head);
-        ll.add(17, head);
+        Scanner scan = new Scanner(System.in);
 
-        ll.findMiddle(head);
+        String check = "start";
 
-        ll.add(46, head);
+        while(!check.equalsIgnoreCase("finish")){
+            check = scan.next();
 
-        ll.print(head);
+            if (check.equalsIgnoreCase("add"))
+                ll.add(scan.nextInt(), head);
 
-        ll.removeIndex(2, head);
+            else if (check.equalsIgnoreCase("findMiddle"))
+                ll.findMiddle(head);
 
-        ll.print(head);
+            else if(check.equalsIgnoreCase("print"))
+                ll.print(head);
 
-        ll.addFirst(4, head);
+            else if (check.equalsIgnoreCase("removeIndex"))
+                ll.removeIndex(scan.nextInt(), head);
 
-        ll.print(head);
+            else if(check.equalsIgnoreCase("addFirst"))
+                ll.addFirst(scan.nextInt(), head);
 
-        ll.findMiddle(head);
+            else if(check.equalsIgnoreCase("contains"))
+                ll.contains(scan.nextInt(), head);
 
-        ll.removeIndex(20, head);
-
-        ll.contains(46, head);
-
-        ll.removeIndex(0, head);
-
-        ll.print(head);
-
-        ll.contains(4, head);
-
-        ll.removeMiddle(head);
-
-        ll.print(head);
-
-        String finish = "finish";
+            else if(check.equalsIgnoreCase("removeMiddle"))
+                ll.removeMiddle(head);
+        }
     }
 }
