@@ -1,21 +1,36 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Account {
-/*
-* private long id;
-* private UUID serial;
-* private String firstName;con
-* private String lastName;con
-* private String type;con
-* private int balance;con
-* private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-*
-* public updateBalance(int amount){}
-* public addTransaction(Transaction transaction){}
-* public printTransactions(){}
-* public printAccountData(){}
-*
- * */
+
+ private long id;
+ private UUID serial = UUID.randomUUID();
+ private String firstName;
+ private String lastName;
+ private String type;
+ private int balance;
+ private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+
+ public Account(String fName, String lName, String type, int balance, long id){
+     firstName = fName;
+     lastName = lName;
+     this.type = type;
+     this.balance = balance;
+     this.id = id;
+ }
+
+    public void updateBalance(int amount){balance += amount;}
+
+    public void addTransaction(Transaction transaction){transactions.add(transaction);}
+
+    public void printTransactions(){
+     for(int i = 0;i < transactions.size();i++)
+         transactions.get(i).print();
+    }
+
+    public void printAccountData(){System.out.println("id: " + id + "UUID: " + serial.toString() + "Name: " + firstName + " " + lastName + "type: " + type + "balance: " + balance);}
+
+    public int getBalance(){return balance;}
 }

@@ -7,7 +7,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
-    private ArrayList<Account>  accounts = new ArrayList<>();
+    private ArrayList<Account>  accountList = new ArrayList<>();
 
     public User(long id, String fName, String lName, String password){
         this.id = id;
@@ -16,12 +16,37 @@ public class User {
         this.password = password;
     }
 
+    public void addAccount(Account account){accountList.add(account);}
+
+    public void removeAccount(Account account){accountList.remove(account);}
+
+    public void deposit(Account account, int amount){
+        account.updateBalance(amount);
+        account.addTransaction(new Transaction(amount));
+    }
+
+    public  void withdrawal(Account account , int amount){
+        if(account.getBalance() - amount < 0)
+            System.out.println("There is not enough money to withdrawal.");
+
+ //       else if (accountList.)
+
+        else {
+
+        }
+    }
+
+    public void transfer(Account srcAccount, Account destAccount, int amount){
+        if(srcAccount.getBalance() - amount < 0)
+            System.out.println("There is not enough money to transfer.");
+
+        else{
+
+        }
+    }
     /*
-     * addAccount(Account account)
-     * removeAccount(Account account)
-     * deposit(Account account int amount)
-     * withdrawal(Account account , int amount)
-     * transfer(Account srcAccount, Account destAccount, int amount)
+     *
+     *
      * checkBalance(Account account)
      * printAllAvailableAccount()
      * printUserData()
