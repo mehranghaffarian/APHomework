@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Account {
 
-    private long id;
+    private String id;
     private UUID serial = UUID.randomUUID();
     private String firstName;
     private String lastName;
@@ -13,7 +13,7 @@ public class Account {
     private int balance;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 
-    public Account(String fName, String lName, String type, int balance, long id){
+    public Account(String fName, String lName, String type, int balance, String id){
         firstName = fName;
         lastName = lName;
         this.type = type;
@@ -33,4 +33,11 @@ public class Account {
     public void printAccountData(){System.out.println("id: " + id + "UUID: " + serial.toString() + "Name: " + firstName + " " + lastName + "type: " + type + "balance: " + balance);}
 
     public int getBalance(){return balance;}
+
+    public boolean checkSerial(String serial){
+        if(this.serial.toString().equals(serial))
+            return true;
+
+        return false;
+    }
 }
