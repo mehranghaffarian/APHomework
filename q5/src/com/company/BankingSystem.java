@@ -70,4 +70,6 @@ public class BankingSystem {
     }
 
     public ArrayList<User> getUsers(){return users;}
+
+    public ArrayList<Account> getAccounts(){return accounts;}
 }

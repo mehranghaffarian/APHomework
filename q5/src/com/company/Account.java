@@ -30,7 +30,7 @@ public class Account {
             transactions.get(i).print();
     }
 
-    public void printAccountData(){System.out.println("id: " + id + "UUID: " + serial.toString() + "Name: " + firstName + " " + lastName + "type: " + type + "balance: " + balance);}
+    public void printAccountData(){System.out.println("id: " + id + ", UUID: " + serial.toString() + ", Name: " + firstName + " " + lastName + ", type: " + type + ", balance: " + balance);}
 
     public int getBalance(){return balance;}
 

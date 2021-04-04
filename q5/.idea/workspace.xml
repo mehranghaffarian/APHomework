@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="83e4f434-79c9-4b84-ab05-53a445181ac8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/BankingSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/BankingSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/BankingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/BankingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +104,15 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="q5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
