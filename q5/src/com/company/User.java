@@ -69,4 +69,8 @@ public class User {
     public String getPassword(){return password;}
 
     public ArrayList<Account> getAccountList(){return accountList;}
+
+    public String getFirstName(){return firstName;}
+
+    public String getlastName(){return lastName;}
 }
