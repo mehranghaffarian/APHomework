@@ -41,7 +41,5 @@ public class Account {
 
     public int getBalance(){return balance;}
 
-    public String getType(){return type;}
-
     public String getSerial() {return serial.toString();}
 }

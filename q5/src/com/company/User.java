@@ -72,7 +72,7 @@ public class User {
         }
     }
 
-    public void printUserData(){System.out.println("id: " + id + "Name: " + firstName + " " + lastName + "password: " + password + "Number of accounts: " + accountList.size());}
+    public void printUserData(){System.out.println("id: " + id + ", Name: " + firstName + " " + lastName + ", password: " + password + ", Number of accounts: " + accountList.size());}
 
     public Boolean notBack(){
         if(firstName.equals("-1") || lastName.equals("-1") || id.equals("-1") || password.equals("-1"))

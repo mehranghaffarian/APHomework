@@ -117,7 +117,7 @@ public class BankingSystem {
         return null;
     }
 
-    public User getUser(String ID){
+    public User findUser(String ID){
         Iterator<User> it = users.iterator();
 
         while (it.hasNext()){
@@ -129,6 +129,4 @@ public class BankingSystem {
 
         return new User("-1", "0", "0", "0");
     }
-
-    public ArrayList<Account> getAccounts(){return accounts;}
 }
