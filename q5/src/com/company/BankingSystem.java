@@ -45,7 +45,17 @@ public class BankingSystem {
 
     public void addAccount(Account account){accounts.add(account);}
 
-    public void removeAccount(Account account){accounts.remove(account);}
+    public void removeAccount(Account account){
+        accounts.remove(account);
+
+        Iterator<User> usersIt = users.iterator();
+
+        while (usersIt.hasNext()){
+            User user = usersIt.next();
+
+            user.removeAccount(account.getSerial());
+        }
+    }
 
     public void displayAccounts(){
         Iterator<Account> it = accounts.iterator();

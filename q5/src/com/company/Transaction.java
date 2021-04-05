@@ -8,5 +8,5 @@ public class Transaction {
 
     public Transaction(int amount){this.amount = amount;}
 
-    public void print(){System.out.println("transaction data -> amount: " + amount + "date: " + date.toString());}
+    public void print(){System.out.println("transaction data -> amount: " + amount + ", date: " + date.toString());}
 }

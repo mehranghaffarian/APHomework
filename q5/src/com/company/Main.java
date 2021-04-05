@@ -13,6 +13,7 @@ public class Main {
         User mehran = new User("9931042", "mehran", "ghaffarian", "12345678");
 
         bank.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 125, "123"));
+        bank.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 205, "124"));
         bank.addUser(mehran);
 
         mehran.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 125, "123"));
@@ -53,7 +54,8 @@ public class Main {
                         System.out.println("user created.");
                     }
                 }
-            } else if (choice == 2) {
+            }
+            else if (choice == 2) {
                 System.out.println("please enter the id and password respectively.");
 
                 User user = new User("0", "0", "0", "0");
@@ -103,8 +105,8 @@ public class Main {
                                 System.out.println("Choose from above.");
                                 index = scan.nextInt();
 
-                                if (index != -1) {
-                                    System.out.println("1.Withdrawal\n2.Deposit\n3.Transfer\n4.Check Balance\n5.Back");
+                                if (index != -1 && index > 0 && index <= user.getAccountList().size()) {
+                                    System.out.println("1.Withdrawal\n2.Deposit\n3.Transfer\n4.Check Balance\n5.Back\n6.print transactions");
                                     choice = scan.nextInt();
 
                                     Account account = user.getAccountList().get(index - 1);
@@ -119,7 +121,8 @@ public class Main {
                                             System.out.println("Completed.");
                                         } else
                                             System.out.println("Not enough money.");
-                                    } else if (choice == 2) {
+                                    }
+                                    else if (choice == 2) {
                                         System.out.println("please enter the amount of money to deposit.");
                                         int amount = scan.nextInt();
 
@@ -127,8 +130,10 @@ public class Main {
                                         account.updateBalance(amount);
 
                                         System.out.println("Completed.");
-                                    } else if (choice == 3) {
+                                    }
+                                    else if (choice == 3) {
                                         System.out.println("Enter the destination serial and the amount of the money respectively.");
+                                        scan.nextLine();
                                         String serial = scan.nextLine();
                                         int amount = scan.nextInt();
 
@@ -138,17 +143,17 @@ public class Main {
                                         else {
                                             Iterator<Account> allAccounts = bank.getAccounts().iterator();
                                             isIn = false;
-                                            Account destAccount = new Account("0", "0", "0", 0, "0");
+                                            Account destAccount = allAccounts.next();
 
                                             while (allAccounts.hasNext()) {
+                                                if (destAccount.checkSerial(serial))
+                                                    isIn = true;
+
                                                 if (!isIn)
                                                     destAccount = allAccounts.next();
 
                                                 else
                                                     allAccounts.next();
-
-                                                if (destAccount.checkSerial(serial))
-                                                    isIn = true;
                                             }
                                             if (!isIn)
                                                 System.out.println("Destination account doesn’t exist or there is not enough money in your account.");
@@ -163,29 +168,35 @@ public class Main {
                                                 System.out.println("Completed.");
                                             }
                                         }
-                                    } else if (choice == 4) {
+                                    }
+                                    else if (choice == 4) {
                                         System.out.println(account.getBalance());
-                                    } else if (choice == 5) {
+                                    }
+                                    else if (choice == 5) {
                                         System.out.println("Logged out of account.");
                                         Back = false;
                                     }
+                                    else if(choice == 6)
+                                        account.printTransactions();
                                 }
                             } else if (choice == 2) {
-                                System.out.println("Enter User ID and Account type respectively.");
+                                System.out.println("Enter User ID, Account type and Money respectively.");
                                 scan.nextLine();
                                 id = scan.nextLine();
                                 String type = scan.nextLine();
+                                int money = scan.nextInt();
 
-                                bank.addAccount(new Account(user.getFirstName(), user.getlastName(), type, 0, id));
+                                bank.addAccount(new Account(user.getFirstName(), user.getlastName(), type, money, id));
 
-                                user.addAccount((new Account(user.getFirstName(), user.getlastName(), type, 0, id)));
+                                user.addAccount((new Account(user.getFirstName(), user.getlastName(), type, money, id)));
 
                                 System.out.println("New account opened.");
                             }
                         }
                     }
                 }
-            } else if (choice == 3) {
+            }
+            else if (choice == 3) {
                 System.out.println("please enter the username and password respectively.");
                 scan.nextLine();
                 String username = scan.nextLine();

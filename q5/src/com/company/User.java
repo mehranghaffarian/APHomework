@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class User {
     private final String id;
@@ -18,7 +19,16 @@ public class User {
 
     public void addAccount(Account account){accountList.add(account);}
 
-    public void removeAccount(Account account){accountList.remove(account);}
+    public void removeAccount(String serial){
+        Iterator<Account> accounts = accountList.iterator();
+
+        while (accounts.hasNext()){
+            Account account = accounts.next();
+
+            if(account.checkSerial(serial))
+                accountList.remove(account);
+        }
+    }
 
     public void deposit(Account account, int amount){
         account.updateBalance(amount);
