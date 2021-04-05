@@ -10,14 +10,17 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         BankingSystem bank = new BankingSystem();
-        User mehran = new User("9931042", "mehran", "ghaffarian", "12345678");
+        User mehran = new User("9931042", "mehran", "ghaffarian", "123");
 
-        bank.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 125, "123"));
-        bank.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 205, "124"));
+        Account account1 = new Account("Mehran", "Ghaffarian", "sepordeh", 125, "123");
+        Account account2 = new Account("Mehran", "Ghaffarian", "sepordeh", 205, "124");
+
         bank.addUser(mehran);
+        bank.addAccount(account1);
+        bank.addAccount(account2);
 
-        mehran.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 125, "123"));
-        mehran.addAccount(new Account("Mehran", "Ghaffarian", "sepordeh", 205, "124"));
+        mehran.addAccount(account1);
+        mehran.addAccount(account2);
 
         int choice = 1;
 
@@ -27,67 +30,49 @@ public class Main {
             choice = scan.nextInt();
 
             if (choice == 1) {
-                System.out.println("please enter the first name, last name, id and password respectively");
+                System.out.println("please enter the id, first name, last name and password respectively");
+                scan.nextLine();
 
                 String fName = scan.next();
                 String lName = scan.next();
                 String id = scan.next();
                 String password = scan.next();
 
-                Iterator<User> it = bank.getUsers().iterator();
-                Boolean isSame = false;
+                User userToAdd = new User(scan.nextLine(), scan.nextLine(), scan.nextLine(), scan.nextLine());
 
-                if (!fName.equals("-1") && !lName.equals("-1") && !id.equals("-1") && !password.equals("-1")) {
-                    while (it.hasNext()) {
-                        User user = it.next();
-
-                        if (user.getId().equals(id))
-                            isSame = true;
-                    }
-
-                    if (isSame)
-                        System.out.println("user already exists.");
-
-                    else {
-                        bank.getUsers().add(new User(fName, lName, id, password));
-
-                        System.out.println("user created.");
-                    }
-                }
-            }
-            else if (choice == 2) {
+                bank.register(userToAdd);
+//                Iterator<User> it = bank.getUsers().iterator();
+//                Boolean isSame = false;
+//
+//                if (!fName.equals("-1") && !lName.equals("-1") && !id.equals("-1") && !password.equals("-1")) {
+//                    while (it.hasNext()) {
+//                        User user = it.next();
+//
+//                        if (user.getId().equals(id))
+//                            isSame = true;
+//                    }
+//
+//                    if (isSame)
+//                        System.out.println("user already exists.");
+//
+//                    else {
+//                        bank.register(new User(fName, lName, id, password));
+//
+//                        System.out.println("user created.");
+//                    }
+            } else if (choice == 2) {
                 System.out.println("please enter the id and password respectively.");
-
-                User user = new User("0", "0", "0", "0");
-
+                scan.nextLine();
                 String id = scan.next();
                 String password = scan.next();
 
                 if (!id.equals("-1") && !password.equals("-1")) {
-                    Iterator<User> it = bank.getUsers().iterator();
-                    Boolean isIn = false;
+                    User user = bank.login(id, password);
 
-                    while (it.hasNext()) {
-                        if (!isIn)
-                            user = it.next();
-
-                        else
-                            it.next();
-
-                        if (user.getId().equals(id))
-                            if (user.getPassword().equals(password))
-                                isIn = true;
-                    }
-                    if (!isIn)
-                        System.out.println("user doesn't exists or password is incorrect");
-
-                    else {
-                        System.out.println("logged in.");
-
+                    if (!user.getId().equals("-1")) {
                         Boolean Back = false;
 
                         while (!Back) {
-                            Back = true;
                             System.out.println("1.Existing accounts\n2.Add new account\n3.Log out");
                             choice = scan.nextInt();
 
@@ -121,8 +106,7 @@ public class Main {
                                             System.out.println("Completed.");
                                         } else
                                             System.out.println("Not enough money.");
-                                    }
-                                    else if (choice == 2) {
+                                    } else if (choice == 2) {
                                         System.out.println("please enter the amount of money to deposit.");
                                         int amount = scan.nextInt();
 
@@ -130,8 +114,7 @@ public class Main {
                                         account.updateBalance(amount);
 
                                         System.out.println("Completed.");
-                                    }
-                                    else if (choice == 3) {
+                                    } else if (choice == 3) {
                                         System.out.println("Enter the destination serial and the amount of the money respectively.");
                                         scan.nextLine();
                                         String serial = scan.nextLine();
@@ -142,8 +125,8 @@ public class Main {
 
                                         else {
                                             Iterator<Account> allAccounts = bank.getAccounts().iterator();
-                                            isIn = false;
-                                            Account destAccount = allAccounts.next();
+                                            Boolean isIn = false;
+                                            Account destAccount = new Account("0", "0", "0", 0, "0");
 
                                             while (allAccounts.hasNext()) {
                                                 if (destAccount.checkSerial(serial))
@@ -155,6 +138,10 @@ public class Main {
                                                 else
                                                     allAccounts.next();
                                             }
+                                            //checking the last account
+                                            if (destAccount.checkSerial(serial))
+                                                isIn = true;
+
                                             if (!isIn)
                                                 System.out.println("Destination account doesn’t exist or there is not enough money in your account.");
 
@@ -168,18 +155,16 @@ public class Main {
                                                 System.out.println("Completed.");
                                             }
                                         }
-                                    }
-                                    else if (choice == 4) {
+                                    } else if (choice == 4) {
                                         System.out.println(account.getBalance());
-                                    }
-                                    else if (choice == 5) {
+                                    } else if (choice == 5) {
                                         System.out.println("Logged out of account.");
                                         Back = false;
-                                    }
-                                    else if(choice == 6)
+                                    } else if (choice == 6)
                                         account.printTransactions();
                                 }
-                            } else if (choice == 2) {
+                            }
+                            else if (choice == 2) {
                                 System.out.println("Enter User ID, Account type and Money respectively.");
                                 scan.nextLine();
                                 id = scan.nextLine();
@@ -192,66 +177,45 @@ public class Main {
 
                                 System.out.println("New account opened.");
                             }
+                            else if(choice == 3)
+                                Back = true;
                         }
                     }
                 }
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 System.out.println("please enter the username and password respectively.");
                 scan.nextLine();
                 String username = scan.nextLine();
                 String password = scan.nextLine();
 
-                if(!username.equals("sysadmin") || !password.equals("1234"))
+                if (!username.equals("sysadmin") || !password.equals("1234"))
                     System.out.println("username or password is incorrect.");
 
-                else  {
+                else {
                     System.out.println("Logged in as sysadmin.");
 
                     System.out.println("1.display users\n2.display accounts\n3.remove user\n4.remove account");
                     choice = scan.nextInt();
 
-                    if(choice == 1){
-                        Iterator<User> users = bank.getUsers().iterator();
-                        int i = 0;
+                    if (choice == 1)
+                        bank.displayUsers();
 
-                        while (users.hasNext()){
-                            User user = users.next();
+                    else if (choice == 2)
+                        bank.displayAccounts();
 
-                            System.out.println("User " + ++i + ": " + user.getFirstName() + " " + user.getlastName() + " " + user.getId());
-                        }
-                    }
-                    else if(choice == 2){
-                        Iterator<Account> accounts = bank.getAccounts().iterator();
-                        int i = 0;
-
-                        while (accounts.hasNext()){
-                            Account account = accounts.next();
-
-                            System.out.println("Account " + ++i + ": " + account.getSerial() + " " + account.getType() + " " + account.getBalance());
-                        }
-                    }
-                    else if(choice == 3){
+                    else if (choice == 3) {
                         System.out.println("please enter the ID.");
                         scan.nextLine();
                         String id = scan.nextLine();
 
-                        Iterator<User> users = bank.getUsers().iterator();
-                        Boolean isIn = false;
+                        User userCheck = bank.getUser(id);
 
-                        while (users.hasNext()){
-                            User user = users.next();
-
-                            if(user.getId().equals(id)) {
-                                isIn = true;
-                                bank.removeUser(user);
-                                System.out.println("User removed.");
-                            }
-                        }
-                        if(!isIn)
+                        if (userCheck.getId().equals("-1"))
                             System.out.println("User does not exist.");
-                    }
-                    else if(choice == 4){
+
+                        else
+                            bank.removeUser(userCheck);
+                    } else if (choice == 4) {
                         System.out.println("please enter the serial.");
                         scan.nextLine();
                         String serial = scan.nextLine();
@@ -259,22 +223,20 @@ public class Main {
                         Iterator<Account> accounts = bank.getAccounts().iterator();
                         Boolean isIn = false;
 
-                        while (accounts.hasNext()){
+                        while (accounts.hasNext()) {
                             Account account = accounts.next();
 
-                            if(account.checkSerial(serial)) {
+                            if (account.checkSerial(serial)) {
                                 isIn = true;
                                 bank.removeAccount(account);
                                 System.out.println("Account removed.");
                             }
                         }
-                        if(!isIn)
+                        if (!isIn)
                             System.out.println("Account does not exist.");
                     }
                 }
             }
-            else if(choice != 4)
-                choice = 0;
         }
     }
 }

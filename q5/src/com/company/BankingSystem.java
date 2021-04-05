@@ -7,9 +7,30 @@ public class BankingSystem {
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<User> users = new ArrayList<>();
 
-    public void register(User user){users.add(user);}
+    public void register(User user) {
+        Iterator<User> it = users.iterator();
+        Boolean isSame = false;
 
-    public void login(String id, String password){
+        if (user.notBack()) {
+            while (it.hasNext()) {
+                User userCheck = it.next();
+
+                if (userCheck.getId().equals(user.getId()))
+                    isSame = true;
+            }
+
+            if (isSame)
+                System.out.println("user already exists.");
+
+            else {
+                users.add(user);
+
+                System.out.println("user created.");
+            }
+        }
+    }
+
+    public User login(String id, String password){
         Iterator<User> it = users.iterator();
         boolean isId = false;
 
@@ -19,31 +40,48 @@ public class BankingSystem {
             if(user.getId().equals(id)){
                 isId = true;
 
-                if(user.getPassword().equals(password))
+                if(user.getPassword().equals(password)) {
                     System.out.println("logged in.");
+                    return user;
+                }
                 else
                     System.out.println("wrong password.");
             }
         }
         if(!isId)
             System.out.println("there is no user with that id: " + id);
+
+        return new User("-1", "0", "0", "0");
     }
 
     public void addUser(User user){users.add(user);}
 
-    public void removeUser(User user){users.remove(user);}
+    public void removeUser(User user) {
+        Iterator<Account> accountsIt = accounts.iterator();
 
-    public void displayUsers(){
+        while (accountsIt.hasNext()) {
+            Account account = accountsIt.next();
+
+            if (user.getAccountList().contains(account))
+                accountsIt.remove();
+        }
+        users.remove(user);
+        System.out.println("User removed.");
+    }
+
+    public void displayUsers() {
         Iterator<User> it = users.iterator();
 
-        while (it.hasNext()){
+        while (it.hasNext()) {
             User user = it.next();
 
             user.printUserData();
         }
     }
 
-    public void addAccount(Account account){accounts.add(account);}
+    public void addAccount(Account account) {
+        accounts.add(account);
+    }
 
     public void removeAccount(Account account){
         accounts.remove(account);
@@ -79,7 +117,18 @@ public class BankingSystem {
         return null;
     }
 
-    public ArrayList<User> getUsers(){return users;}
+    public User getUser(String ID){
+        Iterator<User> it = users.iterator();
+
+        while (it.hasNext()){
+            User user = it.next();
+
+            if(user.getId().equals(ID))
+                return user;
+        }
+
+        return new User("-1", "0", "0", "0");
+    }
 
     public ArrayList<Account> getAccounts(){return accounts;}
 }
