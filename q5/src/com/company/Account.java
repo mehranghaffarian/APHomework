@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Account {
 
     private String id;
-    private UUID serial = UUID.randomUUID();
+    private final UUID serial = UUID.randomUUID();
     private String firstName;
     private String lastName;
     private String type;

@@ -79,6 +79,13 @@ public class User {
 
     public void printUserData(){System.out.println("id: " + id + ", Name: " + firstName + " " + lastName + ", password: " + password + ", Number of accounts: " + accountList.size());}
 
+    public Boolean isSame(User user){
+        if(user.checkId(id))
+            return true;
+
+        return false;
+    }
+
     public Boolean notBack(){
         if(firstName.equals("-1") || lastName.equals("-1") || id.equals("-1") || password.equals("-1"))
             return false;
@@ -86,9 +93,19 @@ public class User {
         return true;
     }
 
-    public String getId(){return id;}
+    public Boolean checkId(String id){
+        if(this.id.equals(id))
+            return true;
 
-    public String getPassword(){return password;}
+        return false;
+    }
+
+    public Boolean checkPassword(String pass){
+        if(pass.equals(password))
+            return true;
+
+        return false;
+    }
 
     public ArrayList<Account> getAccountList(){return accountList;}
 

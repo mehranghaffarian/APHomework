@@ -67,16 +67,14 @@ public class Main {
                                         int amount = scan.nextInt();
 
                                         user.withdrawal(account, amount);
-                                    }
-                                    else if (choice == 2) {
+                                    } else if (choice == 2) {
                                         System.out.println("please enter the amount of money to deposit.");
                                         int amount = scan.nextInt();
 
                                         user.deposit(account, amount);
 
                                         System.out.println("Completed.");
-                                    }
-                                    else if (choice == 3) {
+                                    } else if (choice == 3) {
                                         System.out.println("Enter the destination serial and the amount of the money respectively.");
                                         scan.nextLine();
                                         String serial = scan.nextLine();
@@ -88,14 +86,12 @@ public class Main {
                                             System.out.println("Destination account doesn’t exist or there is not enough money in your account.");
                                         else
                                             user.transfer(account, destAccount, amount);
-                                    }
-                                    else if (choice == 4)
+                                    } else if (choice == 4)
                                         user.checkBalance(account);
                                     else if (choice == 5) {
                                         System.out.println("Logged out of account.");
                                         Back = false;
-                                    }
-                                    else if (choice == 6)
+                                    } else if (choice == 6)
                                         account.printTransactions();
                                 }
                             }
@@ -106,13 +102,18 @@ public class Main {
                                 String type = scan.nextLine();
                                 int money = scan.nextInt();
 
-                                bank.addAccount(new Account(user.getFirstName(), user.getlastName(), type, money, id));
-                                user.addAccount((new Account(user.getFirstName(), user.getlastName(), type, money, id)));
+                                if (user.checkId(id)) {
+                                    bank.addAccount(new Account(user.getFirstName(), user.getlastName(), type, money, id));
+                                    user.addAccount((new Account(user.getFirstName(), user.getlastName(), type, money, id)));
 
-                                System.out.println("New account opened.");
+                                    System.out.println("New account opened.");
+                                } else
+                                    System.out.println("Wrong ID.");
                             }
-                            else if(choice == 3)
+                            else if (choice == 3) {
                                 Back = true;
+                                System.out.println("Logged out.");
+                            }
                         }
                     }
                 }
@@ -123,10 +124,10 @@ public class Main {
                 String username = scan.nextLine();
                 String password = scan.nextLine();
 
-                if (!username.equals("sysadmin") || !password.equals("1234"))
+                if ((!username.equals("sysadmin") || !password.equals("1234")) && !username.equals("-1") && !password.equals("-1"))
                     System.out.println("username or password is incorrect.");
 
-                else {
+                else if (!username.equals("-1") && !password.equals("-1")) {
                     System.out.println("Logged in as sysadmin.");
 
                     System.out.println("1.display users\n2.display accounts\n3.remove user\n4.remove account");
@@ -145,7 +146,7 @@ public class Main {
 
                         User userCheck = bank.findUser(id);
 
-                        if (!userCheck.notBack())
+                        if (userCheck == null)
                             System.out.println("User does not exist.");
 
                         else

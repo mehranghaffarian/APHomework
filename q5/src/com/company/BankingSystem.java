@@ -15,7 +15,7 @@ public class BankingSystem {
             while (it.hasNext()) {
                 User userCheck = it.next();
 
-                if (userCheck.getId().equals(user.getId()))
+                if (userCheck.isSame(user))
                     isSame = true;
             }
 
@@ -37,10 +37,10 @@ public class BankingSystem {
         while (it.hasNext()){
             User user = it.next();
 
-            if(user.getId().equals(id)){
+            if(user.checkId(id)){
                 isId = true;
 
-                if(user.getPassword().equals(password)) {
+                if(user.checkPassword(password)) {
                     System.out.println("logged in.");
                     return user;
                 }
@@ -123,10 +123,10 @@ public class BankingSystem {
         while (it.hasNext()){
             User user = it.next();
 
-            if(user.getId().equals(ID))
+            if(user.checkId(ID))
                 return user;
         }
 
-        return new User("-1", "0", "0", "0");
+        return null;
     }
 }
