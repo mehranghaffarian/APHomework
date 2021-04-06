@@ -7,6 +7,9 @@ public class BankingSystem {
     private ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<User> users = new ArrayList<>();
 
+    /**
+     * @param user is added to the bank system if there is no problem
+     * */
     public void register(User user) {
         Iterator<User> it = users.iterator();
         Boolean isSame = false;
@@ -30,6 +33,11 @@ public class BankingSystem {
         }
     }
 
+    /**
+     * @param id is checked with the ids from the bank list
+     * @param password is checked with the user which has the given id
+     * @return user with the given id and password, if not found returns null
+     * */
     public User login(String id, String password){
         Iterator<User> it = users.iterator();
         boolean isId = false;
@@ -54,21 +62,22 @@ public class BankingSystem {
         return new User("-1", "0", "0", "0");
     }
 
+    /**
+     * @param user is added to the bank list
+     * */
     public void addUser(User user){users.add(user);}
 
+    /**
+     * @param user and its accounts are removed from the bank system
+     * */
     public void removeUser(User user) {
-        Iterator<Account> accountsIt = accounts.iterator();
-
-        while (accountsIt.hasNext()) {
-            Account account = accountsIt.next();
-
-            if (user.getAccountList().contains(account))
-                accountsIt.remove();
-        }
+        accounts.removeIf(account -> user.getAccountList().contains(account));
         users.remove(user);
         System.out.println("User removed.");
     }
-
+    /**
+     *all the users in the bank system are listed
+     * */
     public void displayUsers() {
         Iterator<User> it = users.iterator();
 
@@ -83,6 +92,9 @@ public class BankingSystem {
         accounts.add(account);
     }
 
+    /**
+     * @param account is removed from both bank system and the user who owns it
+     * */
     public void removeAccount(Account account){
         accounts.remove(account);
 
@@ -95,6 +107,9 @@ public class BankingSystem {
         }
     }
 
+    /**
+     * exhibits the all accounts
+     * */
     public void displayAccounts(){
         Iterator<Account> it = accounts.iterator();
 
@@ -105,6 +120,10 @@ public class BankingSystem {
         }
     }
 
+    /**
+     * @param serial is searched among the users serials
+     * @return an account with the given serial or returns null
+     * */
     public Account findAccount(String serial){
         Iterator<Account> it = accounts.iterator();
 
@@ -117,6 +136,10 @@ public class BankingSystem {
         return null;
     }
 
+    /**
+     * @param ID is searched among the users ids
+     * @return an user with the given ID or returns null
+     * */
     public User findUser(String ID){
         Iterator<User> it = users.iterator();
 

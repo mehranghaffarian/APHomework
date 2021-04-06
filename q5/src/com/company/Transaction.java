@@ -8,5 +8,8 @@ public class Transaction {
 
     public Transaction(int amount){this.amount = amount;}
 
+    /**
+     * demonstrates the Transaction Data
+     * */
     public void print(){System.out.println("transaction data -> amount: " + amount + ", date: " + date.toString());}
 }

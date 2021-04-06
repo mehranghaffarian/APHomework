@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="83e4f434-79c9-4b84-ab05-53a445181ac8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/BankingSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/BankingSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/Transaction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/q5/com/company/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/q5/com/company/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/BankingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/BankingSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Transaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,5 +141,26 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/BankingSystem.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/company/Account.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
