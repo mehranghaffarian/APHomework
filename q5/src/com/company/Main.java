@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -45,7 +44,7 @@ public class Main {
                 if (!id.equals("-1") && !password.equals("-1")) {
                     User user = bank.login(id, password);
 
-                    if (!user.getId().equals("-1")) {
+                    if (user.notBack()) {
                         Boolean Back = false;
 
                         while (!Back) {
@@ -53,20 +52,11 @@ public class Main {
                             choice = scan.nextInt();
 
                             if (choice == 1) {
-                                Iterator<Account> itAccounts = user.getAccountList().iterator();
-                                int index = 0;
-
-                                while (itAccounts.hasNext()) {
-                                    Account account = itAccounts.next();
-
-                                    System.out.printf("Account %d: ", ++index);
-
-                                    account.printAccountData();
-                                }
+                                user.printAllAvailableAccount();
                                 System.out.println("Choose from above.");
-                                index = scan.nextInt();
+                                int index = scan.nextInt();
 
-                                if (index != -1 && index > 0 && index <= user.getAccountList().size()) {
+                                if (index > 0 && index <= user.getAccountList().size()) {
                                     System.out.println("1.Withdrawal\n2.Deposit\n3.Transfer\n4.Check Balance\n5.Back\n6.print transactions");
                                     choice = scan.nextInt();
 
@@ -76,50 +66,36 @@ public class Main {
                                         System.out.println("please enter the amount of money to withdrawal.");
                                         int amount = scan.nextInt();
 
-                                        if (account.getBalance() - amount >= 0) {
-                                            account.addTransaction(new Transaction(-amount));
-                                            account.updateBalance(-amount);
-                                            System.out.println("Completed.");
-                                        } else
-                                            System.out.println("Not enough money.");
-                                    } else if (choice == 2) {
+                                        user.withdrawal(account, amount);
+                                    }
+                                    else if (choice == 2) {
                                         System.out.println("please enter the amount of money to deposit.");
                                         int amount = scan.nextInt();
 
-                                        account.addTransaction(new Transaction(amount));
-                                        account.updateBalance(amount);
+                                        user.deposit(account, amount);
 
                                         System.out.println("Completed.");
-                                    } else if (choice == 3) {
+                                    }
+                                    else if (choice == 3) {
                                         System.out.println("Enter the destination serial and the amount of the money respectively.");
                                         scan.nextLine();
                                         String serial = scan.nextLine();
                                         int amount = scan.nextInt();
 
-                                        if (account.getBalance() - amount < 0)
+                                        Account destAccount = bank.findAccount(serial);
+
+                                        if (destAccount == null)
                                             System.out.println("Destination account doesn’t exist or there is not enough money in your account.");
-
-                                        else {
-                                            Account destAccount = bank.findAccount(serial);
-
-                                            if (destAccount == null)
-                                                System.out.println("Destination account doesn’t exist or there is not enough money in your account.");
-                                            else {
-                                                destAccount.updateBalance(amount);
-                                                destAccount.addTransaction(new Transaction(amount));
-
-                                                account.updateBalance(-amount);
-                                                account.addTransaction(new Transaction(-amount));
-
-                                                System.out.println("Completed.");
-                                            }
-                                        }
-                                    } else if (choice == 4) {
-                                        System.out.println(account.getBalance());
-                                    } else if (choice == 5) {
+                                        else
+                                            user.transfer(account, destAccount, amount);
+                                    }
+                                    else if (choice == 4)
+                                        user.checkBalance(account);
+                                    else if (choice == 5) {
                                         System.out.println("Logged out of account.");
                                         Back = false;
-                                    } else if (choice == 6)
+                                    }
+                                    else if (choice == 6)
                                         account.printTransactions();
                                 }
                             }
@@ -169,12 +145,13 @@ public class Main {
 
                         User userCheck = bank.findUser(id);
 
-                        if (userCheck.getId().equals("-1"))
+                        if (!userCheck.notBack())
                             System.out.println("User does not exist.");
 
                         else
                             bank.removeUser(userCheck);
-                    } else if (choice == 4) {
+                    }
+                    else if (choice == 4) {
                         System.out.println("please enter the serial.");
                         scan.nextLine();
                         String serial = scan.nextLine();

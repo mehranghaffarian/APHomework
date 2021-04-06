@@ -45,6 +45,8 @@ public class User {
         else {
             account.addTransaction(new Transaction(-amount));
             account.updateBalance(-amount);
+
+            System.out.println("Completed.");
         }
     }
 
@@ -61,6 +63,8 @@ public class User {
 
             destAccount.updateBalance(amount);
             destAccount.addTransaction(new Transaction(amount));
+
+            System.out.println("Completed.");
         }
     }
 
@@ -68,6 +72,7 @@ public class User {
 
     public void printAllAvailableAccount(){
         for (int i = 0;i < accountList.size();i++){
+            System.out.printf("Account %d: ", 1 + i);
             accountList.get(i).printAccountData();
         }
     }
