@@ -3,8 +3,9 @@ package com.company;
 import java.util.Scanner;
 
 /**
- * @mehran
- * */
+ * @version ultimate version
+ * @author Mehran Ghaffarian
+ */
 
 public class Main {
 
@@ -12,7 +13,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         BankingSystem bank = new BankingSystem();
-        User mehran = new User("9931042", "mehran", "ghaffarian", "123");
+        User mehran = new User("9931042", "Mehran", "Ghaffarian", "123");
 
         Account account1 = new Account("Mehran", "Ghaffarian", "sepordeh", 125, "123");
         Account account2 = new Account("Mehran", "Ghaffarian", "sepordeh", 205, "124");
@@ -38,8 +39,7 @@ public class Main {
                 User userToAdd = new User(scan.nextLine(), scan.nextLine(), scan.nextLine(), scan.nextLine());
 
                 bank.register(userToAdd);
-            }
-            else if (choice == 2) {
+            } else if (choice == 2) {
                 System.out.println("please enter the id and password respectively.");
                 scan.nextLine();
                 String id = scan.next();
@@ -49,7 +49,7 @@ public class Main {
                     User user = bank.login(id, password);
 
                     if (user.notBack()) {
-                        Boolean Back = false;
+                        boolean Back = false;
 
                         while (!Back) {
                             System.out.println("1.Existing accounts\n2.Add new account\n3.Log out");
@@ -76,8 +76,6 @@ public class Main {
                                         int amount = scan.nextInt();
 
                                         user.deposit(account, amount);
-
-                                        System.out.println("Completed.");
                                     } else if (choice == 3) {
                                         System.out.println("Enter the destination serial and the amount of the money respectively.");
                                         scan.nextLine();
@@ -87,7 +85,7 @@ public class Main {
                                         Account destAccount = bank.findAccount(serial);
 
                                         if (destAccount == null)
-                                            System.out.println("Destination account doesn’t exist or there is not enough money in your account.");
+                                            System.out.println("Destination account does not exist or there is not enough money in your account.");
                                         else
                                             user.transfer(account, destAccount, amount);
                                     } else if (choice == 4)
@@ -98,8 +96,7 @@ public class Main {
                                     } else if (choice == 6)
                                         account.printTransactions();
                                 }
-                            }
-                            else if (choice == 2) {
+                            } else if (choice == 2) {
                                 System.out.println("Enter User ID, Account type and Money respectively.");
                                 scan.nextLine();
                                 id = scan.nextLine();
@@ -107,22 +104,22 @@ public class Main {
                                 int money = scan.nextInt();
 
                                 if (user.checkId(id)) {
-                                    bank.addAccount(new Account(user.getFirstName(), user.getlastName(), type, money, id));
-                                    user.addAccount((new Account(user.getFirstName(), user.getlastName(), type, money, id)));
+                                    Account accountToCreate = new Account(user.getFirstName(), user.getlastName(), type, money, id);
+
+                                    bank.addAccount(accountToCreate);
+                                    user.addAccount(accountToCreate);
 
                                     System.out.println("New account opened.");
                                 } else
                                     System.out.println("Wrong ID.");
-                            }
-                            else if (choice == 3) {
+                            } else if (choice == 3) {
                                 Back = true;
                                 System.out.println("Logged out.");
                             }
                         }
                     }
                 }
-            }
-            else if (choice == 3) {
+            } else if (choice == 3) {
                 System.out.println("please enter the username and password respectively.");
                 scan.nextLine();
                 String username = scan.nextLine();
@@ -155,8 +152,7 @@ public class Main {
 
                         else
                             bank.removeUser(userCheck);
-                    }
-                    else if (choice == 4) {
+                    } else if (choice == 4) {
                         System.out.println("please enter the serial.");
                         scan.nextLine();
                         String serial = scan.nextLine();

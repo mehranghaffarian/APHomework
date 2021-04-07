@@ -43,6 +43,8 @@ public class User {
     public void deposit(Account account, int amount){
         account.updateBalance(amount);
         account.addTransaction(new Transaction(amount));
+
+        System.out.println("Completed.");
     }
 
     /**
