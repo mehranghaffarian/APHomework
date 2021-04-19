@@ -1,73 +1,81 @@
 package com.company;
 
 import java.util.EmptyStackException;
-
+/**
+ * This class simulates the stack for Integers
+ * @author mehran ghaffarian
+ * */
 public class Stack {
-    private int maxSize;
     private int currentSize;
-    private Node head;
-    private Methods linkedList;
+    private int[] nums;
 
+    /**
+     * creates the stack with the given size
+     * @param maxSize of the stack
+     * */
     public Stack(int maxSize) {
-        head = new Node(0);
-        this.maxSize = maxSize;
         currentSize = 0;
-        linkedList = new Methods();
+        nums = new int[maxSize];
     }
-
+    /**
+     * creates the stack with the size of 10 by default
+     * */
     public Stack() {
-        head = new Node(0);
-        maxSize = 10;
         currentSize = 0;
-        linkedList = new Methods();
+        nums = new int[10];
     }
-
+    /**
+     * adds the given value to the end of the stack
+     * @param value is added
+     * @return value if it was successful otherwise returns exception
+     * */
     public int push(int value) {
-        if (currentSize < maxSize) {
-            linkedList.add(value, head);
+        if (currentSize < nums.length) {
+            nums[currentSize] = value;
             currentSize++;
-            return lastNode().getValue();
+            return value;
         } else
             throw new StackOverflowError("Stack is full?!");
     }
-
+    /**
+     * @return the last value if it exists and removes it otherwise returns exception
+     * */
     public int pop() {
         if (currentSize == 0)
             throw new EmptyStackException();
         else {
-            int last = lastNode().getValue();
-            linkedList.removeIndex(currentSize - 1, head);
+            int last = nums[currentSize - 1];
+            currentSize--;
+            nums[currentSize] = 0;
             return last;
         }
     }
-
-    public int peek() {
-        return lastNode().getValue();
-    }
-
+    /**
+     * @return only the last value with no removing
+     * */
+    public int peek() {return nums[currentSize - 1];}
+    /**
+     * @return true if the stack currentSize is equal to the stack size otherwise returns false
+     * */
     public boolean isEmpty() {
         if (currentSize == 0)
             return true;
 
         return false;
     }
-
+    /**
+     * @return true if the stack is empty otherwise returns false
+     * */
     public boolean isFull() {
-        if (currentSize == maxSize)
+        if (currentSize == nums.length)
             return true;
 
         return false;
     }
-
-    private int lastNumber() {
-        return lastNode().getValue();
-    }
-
-    private Node lastNode() {
-        Node curr = head;
-
-        for (; curr.getNext() != null; curr = curr.getNext()) ;
-
-        return curr;
+    /**
+     * @return the number of the elements
+     * */
+    public int getCurrentSize() {
+        return currentSize;
     }
 }

@@ -1,6 +1,11 @@
 package com.company;
-
+/**
+ *
+ * */
 public class Methods {
+    /**
+     *
+     * */
     public void add(int value, Node head) {
         Node curr = head;
 
@@ -8,7 +13,9 @@ public class Methods {
 
         curr.setNext(new Node(value));
     }
-
+    /**
+     *
+     * */
     public void print(Node head){
         Node curr = head.getNext();
 
@@ -17,7 +24,9 @@ public class Methods {
 
         System.out.println();
     }
-
+    /**
+     *
+     * */
     public void addFirst(int value, Node head){
         Node curr = head;
         Node newNode = new Node(value);
@@ -26,7 +35,9 @@ public class Methods {
 
         head.setNext(newNode);
     }
-
+    /**
+     *
+     * */
     public void findMiddle(Node head){
         int num = 0;
 
@@ -50,7 +61,9 @@ public class Methods {
             System.out.println(curr.getValue());
         }
     }
-
+    /**
+     *
+     * */
     public void removeMiddle(Node head){
         int num = 0;
 
@@ -80,7 +93,9 @@ public class Methods {
             hold = null;
         }
     }
-
+    /**
+     *
+     * */
     public void contains(int value, Node head){
         Node curr = head.getNext();
 
@@ -92,7 +107,9 @@ public class Methods {
         if(curr == null)
             System.out.println("-1");
     }
-
+    /**
+     *
+     * */
     public void removeIndex(int index, Node head){
         Node curr = head.getNext();
         Node target = new Node(0);
@@ -114,7 +131,9 @@ public class Methods {
             hold = null;
         }
     }
-
+    /**
+     *
+     * */
     public int size(Node head){
         int size = 0;
 
@@ -122,7 +141,9 @@ public class Methods {
 
         return size;
     }
-
+    /**
+     *
+     * */
     public int get(int index, Node head){
         if(index >= 0 && head != null && index < size(head)){
             Node curr = head;
@@ -133,7 +154,9 @@ public class Methods {
         }
         return -1;
     }
-
+    /**
+     *
+     * */
     public void set(int index, int value, Node head){
         if(index < 0 || head == null || index >= size(head))
             return;
