@@ -6,25 +6,25 @@ public class Stack {
     private int maxSize;
     private int currentSize;
     private Node head;
-    private Methods ll;
+    private Methods linkedList;
 
     public Stack(int maxSize) {
         head = new Node(0);
         this.maxSize = maxSize;
         currentSize = 0;
-        ll = new Methods();
+        linkedList = new Methods();
     }
 
     public Stack() {
         head = new Node(0);
         maxSize = 10;
         currentSize = 0;
-        ll = new Methods();
+        linkedList = new Methods();
     }
 
     public int push(int value) {
         if (currentSize < maxSize) {
-            ll.add(value, head);
+            linkedList.add(value, head);
             currentSize++;
             return lastNode().getValue();
         } else
@@ -36,7 +36,7 @@ public class Stack {
             throw new EmptyStackException();
         else {
             int last = lastNode().getValue();
-            ll.removeIndex(currentSize - 1, head);
+            linkedList.removeIndex(currentSize - 1, head);
             return last;
         }
     }

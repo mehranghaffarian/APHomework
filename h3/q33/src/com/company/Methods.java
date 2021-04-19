@@ -114,4 +114,34 @@ public class Methods {
             hold = null;
         }
     }
+
+    public int size(Node head){
+        int size = 0;
+
+        for (Node curr = head;curr.getNext() != null; size++, curr = curr.getNext());
+
+        return size;
+    }
+
+    public int get(int index, Node head){
+        if(index >= 0 && head != null && index < size(head)){
+            Node curr = head;
+
+            for (int i = -1; i != index && curr.getNext() != null; i++, curr = curr.getNext()) ;
+
+            return curr.getValue();
+        }
+        return -1;
+    }
+
+    public void set(int index, int value, Node head){
+        if(index < 0 || head == null || index >= size(head))
+            return;
+
+        Node curr = head;
+
+        for(int i = -1;i != index && curr.getNext() != null;i++ ,curr = curr.getNext());
+
+        curr.setValue(value);
+    }
 }
