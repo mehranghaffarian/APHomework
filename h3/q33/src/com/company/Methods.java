@@ -1,10 +1,12 @@
 package com.company;
 /**
- *
+ *this class simulates linkedList for integers
+ * @author mehranghaffarian
  * */
 public class Methods {
     /**
-     *
+     * @param value the value to add in the end of the linked list
+     * @param head the head of the linked list
      * */
     public void add(int value, Node head) {
         Node curr = head;
@@ -14,7 +16,8 @@ public class Methods {
         curr.setNext(new Node(value));
     }
     /**
-     *
+     * prints the values of the nodes
+     * @param head the first node of the linked list
      * */
     public void print(Node head){
         Node curr = head.getNext();
@@ -25,7 +28,8 @@ public class Methods {
         System.out.println();
     }
     /**
-     *
+     * @param value is added to the first of the linked list
+     * @param head the first node of the linked list
      * */
     public void addFirst(int value, Node head){
         Node curr = head;
@@ -36,7 +40,8 @@ public class Methods {
         head.setNext(newNode);
     }
     /**
-     *
+     * returns the middle node value
+     * @param head the first node of the linked list
      * */
     public void findMiddle(Node head){
         int num = 0;
@@ -62,7 +67,8 @@ public class Methods {
         }
     }
     /**
-     *
+     * removes the middle node of the linked list
+     * @param head the first node of the linked list
      * */
     public void removeMiddle(Node head){
         int num = 0;
@@ -94,7 +100,8 @@ public class Methods {
         }
     }
     /**
-     *
+     * @param head the first node of the linked list
+     * @param value is searched among the nodes values
      * */
     public void contains(int value, Node head){
         Node curr = head.getNext();
@@ -108,7 +115,9 @@ public class Methods {
             System.out.println("-1");
     }
     /**
-     *
+     * removes the index if it is valid
+     * @param index is the index of the node to remove
+     * @param head the first node of the linked list
      * */
     public void removeIndex(int index, Node head){
         Node curr = head.getNext();
@@ -132,7 +141,8 @@ public class Methods {
         }
     }
     /**
-     *
+     * @param head the first node of the linked list
+     * @return the size of the linked list
      * */
     public int size(Node head){
         int size = 0;
@@ -142,7 +152,9 @@ public class Methods {
         return size;
     }
     /**
-     *
+     * returns the value of the node with the index (if it is valid)
+     * @param index of the node
+     * @param head the first node of the linked list
      * */
     public int get(int index, Node head){
         if(index >= 0 && head != null && index < size(head)){
@@ -155,7 +167,9 @@ public class Methods {
         return -1;
     }
     /**
-     *
+     * @param head the first node of the linked list
+     * @param index of the node to set the value for
+     * @param value is set for the node
      * */
     public void set(int index, int value, Node head){
         if(index < 0 || head == null || index >= size(head))
