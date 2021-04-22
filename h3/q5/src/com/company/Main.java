@@ -17,5 +17,6 @@ public class Main {
         inventory.setProducts(new Product(LocalDate.of(2020, 1, 10), LocalDate.of(2020, 1, 25), 20, 100, "Diary", "Milk"), 20);
         inventory.setProducts(new Product(LocalDate.of(2020, 2, 1), LocalDate.of(2020, 3, 15), 10, 150, "Diary", "Cheese"), 50);
 
+        System.out.println(inventory);
     }
 }

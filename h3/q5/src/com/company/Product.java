@@ -32,4 +32,16 @@ public class Product {
     public int hashCode() {
         return Objects.hash(proTime, expTime, weight, category, name);
     }
+
+    @Override
+    public String toString() {
+        return "\"Product\": {" +
+                "\n\"NAME\": \"" + name + '\"' +
+                ",\n \"CATEGORY\": \"" + category + '\"' +
+                ",\n\"WEIGHT\": \"" + weight + '\"' +
+                ",\n\"PRICE\": \"" + price + '\"' +
+                ",\n\"MANUFACTURE_DATE\": " + proTime +
+                ",\n\"EXPIRATION_DATE\": " + expTime + '\n' +
+                '}';
+    }
 }
