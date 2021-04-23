@@ -19,19 +19,6 @@ public class Inventory {
         }
     }
 
-    public void printProducts(){
-        Iterator<Product> list = products.keySet().iterator();
-        int i = 1;
-
-        while (list.hasNext()){
-            Product product = list.next();
-
-            System.out.println(i++ + "){");
-            System.out.println("\"Product\": {");
-            System.out.println("\"NAME\": \"");
-        }
-    }
-
     private boolean isIn(Product product){
         Iterator<Product> itr = products.keySet().iterator();
 
@@ -42,10 +29,23 @@ public class Inventory {
         return false;
     }
 
+    public HashMap<Product, Integer> getProducts() {
+        return products;
+    }
+
     @Override
     public String toString() {
-        return "Inventory{" +
-                "products=" + products +
-                '}';
+        Iterator<Product> list = products.keySet().iterator();
+        int i = 1;
+        String inventory = "";
+
+        while (list.hasNext()){
+            Product product = list.next();
+            inventory = inventory.concat(i++ + "){\n" + product.toString() + "\n}" +"instock: " + products.get(product) + "\n");
+        }
+        if(i == 1){
+            inventory = "We are out of stock.";
+        }
+        return inventory;
     }
 }

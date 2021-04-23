@@ -35,13 +35,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\"Product\": {" +
-                "\n\"NAME\": \"" + name + '\"' +
-                ",\n \"CATEGORY\": \"" + category + '\"' +
-                ",\n\"WEIGHT\": \"" + weight + '\"' +
-                ",\n\"PRICE\": \"" + price + '\"' +
-                ",\n\"MANUFACTURE_DATE\": " + proTime +
-                ",\n\"EXPIRATION_DATE\": " + expTime + '\n' +
-                '}';
+        return "  \"Product\": {" +
+                "\n\t\"NAME\": \"" + name + '\"' +
+                ",\n\t\"CATEGORY\": \"" + category + '\"' +
+                ",\n\t\"WEIGHT\": \"" + weight + '\"' +
+                ",\n\t\"PRICE\": \"" + price + '\"' +
+                ",\n\t\"MANUFACTURE_DATE\": " + proTime +
+                ",\n\t\"EXPIRATION_DATE\": " + expTime + '\n' +
+                "  }";
     }
 }
