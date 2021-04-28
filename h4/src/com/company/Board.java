@@ -22,22 +22,24 @@ public class Board {
 
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    public int startGame(int playersNumber) throws InterruptedException {
-        System.out.println(ANSI_WHITE + "Lets decide who to starts by Ace.");
+    public int startGame(ArrayList<Player> players) throws InterruptedException {
+        System.out.println(ANSI_WHITE + "Lets decide who will start the game by lucky Ace.");
+        Thread.sleep(5000);
 
         ArrayList<Card> cards = inventory;
 
-        for (int i = 0;!cards.isEmpty();i++, i = i % playersNumber){
+        for (int i = 0;!cards.isEmpty();i++, i = i % players.size()){
             int cardIndex = rand.nextInt(cards.size());
 
-            System.out.println(ANSI_WHITE  + "player" + i + ":\n" + cards.get(cardIndex));
+            System.out.println(ANSI_WHITE  + players.get(i).getName());
+
+            cards.get(cardIndex).display();
+            System.out.println();
+
             Thread.sleep(1000);
 
-            if(cards.get(cardIndex).getType().equalsIgnoreCase("A")){
-                System.out.println("player" + i + ":\nYou will start the game.");
-
+            if(cards.get(cardIndex).getType().equalsIgnoreCase("A"))
                 return i;
-            }
             else
                 cards.remove(cardIndex);
         }
@@ -45,10 +47,10 @@ public class Board {
     }
 
     public void display(){
-        System.out.println(ANSI_WHITE + (clockwise ? "Clockwise" : "Counterclockwise" + "\nRequired color:0" + color));
+        System.out.println(ANSI_WHITE + "Board is as below\n" + (clockwise ? "Clockwise" : "Counterclockwise") + "\nRequired color: " + color);
 
         lastCard.display();
-        System.out.println(ANSI_WHITE + "It is your turn:");
+        System.out.println();
     }
 
     public Color getColor() {
@@ -79,6 +81,10 @@ public class Board {
         if(card.getType().equals("A") || card.getType().equals("B")){
             return card.getType().equals("A") ? 1 : 11;
         }
+        else if(card.getType().equals("C") || card.getType().equals("D")){
+            return 0;
+        }
+
         return Integer.parseInt(card.getType());
     }
 

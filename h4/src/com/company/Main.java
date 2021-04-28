@@ -26,12 +26,12 @@ public class Main {
         Random rand = new Random();
 
         //creating cards
-        for(int i = 0;i < 4;i++) {
+        for(int i = 0; i < 4; i++) {
             for (int j = 1; j < 10; j++) {
-                if(j == 1 || j == 6 || j == 7 || j == 9)
+                if (j == 1 || j == 6 || j == 7 || j == 9)
                     cards.add(new SpecialCard(types[j], colors[i]));
-
-                cards.add(new UsualCard(types[j], colors[i]));
+                else
+                    cards.add(new UsualCard(types[j], colors[i]));
             }
 
             for(int j = 10;j < 13;j++)
@@ -40,10 +40,11 @@ public class Main {
             cards.add(new SpecialCard("A", colors[i]));
         }
 
+        scan.nextLine();
         //creating players
         ArrayList<Card> cardsToDivide = cards;
         for(int i = 0;i < numberOfPlayers;i++){
-            System.out.println("Please enter the name of player" + (i + 1));
+            System.out.printf("Please enter the name of player%d: ", (i + 1));
             String name = scan.nextLine();
 
             ArrayList<Card> playerCards = new ArrayList<>();
@@ -55,7 +56,12 @@ public class Main {
             }
             players.add(new Player(name, playerCards));
         }
+
         Card lastCard = cardsToDivide.get(rand.nextInt(cards.size()));
+
+        while (lastCard instanceof SpecialCard)
+            lastCard = cardsToDivide.get(rand.nextInt(cards.size()));
+
         cardsToDivide.remove(lastCard);
 
         Game game = new Game(players, new Board(cards, cardsToDivide, true, lastCard.getColor(), lastCard));

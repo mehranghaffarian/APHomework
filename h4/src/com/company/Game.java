@@ -24,8 +24,8 @@ public class Game {
     }
 
     public void sevenDevils() throws InterruptedException {
-        playerToPlay = board.startGame(players.size());
-        System.out.println(players.get(playerToPlay).getName() + "you will  start.");
+        playerToPlay = board.startGame(players);
+        System.out.println(players.get(playerToPlay).getName() + " you will  start.");
 
         while(!isEnd()){
             int mode = applyCard(players.get(playerToPlay), players.get(playerToPlay).choose(board)), ponish = 0;
@@ -83,7 +83,7 @@ public class Game {
                 System.out.println("Please enter the number of the person you wat to give one of your card to.");
 
                 for(int i = 1;i <= players.size();i++)
-                    System.out.println(i + ". " + players.get(i - 1));
+                    System.out.println(i + ". " + players.get(i - 1).getName());
 
                 int index = scan.nextInt() - 1;
 
@@ -109,7 +109,7 @@ public class Game {
                 return 0;
             }
             else if(mode == 11){
-                System.out.println(player.getName() + "Please choose the board color:\n1. RED\n2. BLUE\n3. YELLOW\n4. GREEN");
+                System.out.println(player.getName() + " please choose the board color:\n1. RED\n2. BLUE\n3. YELLOW\n4. GREEN");
                 int color = scan.nextInt();
 
                 if(color < 0 || color >= 5) {
@@ -126,7 +126,7 @@ public class Game {
 
     private boolean isEnd(){
         for(Player player : players)
-            if(player.cardsNumber() == 0)
+            if(player.getCards().size() == 0)
                 return true;
 
             return false;
