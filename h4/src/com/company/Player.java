@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
+    String name;
     ArrayList<Card> cards;
     Scanner scan;
 
-    public Player(ArrayList<Card> cards) {
+    public Player(String name, ArrayList<Card> cards) {
+        this.name = name;
         this.cards = cards;
-        scan = new Scanner(System.in);
+        this.scan = new Scanner(System.in);
     }
 
     public Card choose(Board board){
@@ -28,5 +30,9 @@ public class Player {
                 return card;
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
     }
 }
