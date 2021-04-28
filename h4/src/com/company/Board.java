@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
-    private ArrayList<Card> inventory;
-    private ArrayList<Card> playerCards;
+    private ArrayList<Card> inventory;//just for deciding who to start
+    private ArrayList<Card> hiddenCards;
     private Boolean clockwise;
     private Color color;
     private Card lastCard;
-    Random rand;
+    private Random rand;
 
-    public Board(ArrayList<Card> inventory, ArrayList<Card> playerCards, Color color, Card lastCard) {
+    public Board(ArrayList<Card> inventory, ArrayList<Card> hiddenCards, Boolean clockwise, Color color, Card lastCard) {
         this.inventory = inventory;
-        this.playerCards = playerCards;
-        clockwise = true;
+        this.hiddenCards = hiddenCards;
+        this.clockwise = clockwise;
         this.color = color;
         this.lastCard = lastCard;
         rand = new Random();
@@ -57,5 +57,39 @@ public class Board {
 
     public Card getLastCard() {
         return lastCard;
+    }
+
+    public boolean isPlayable(Card card){
+        if(card.getColor() == color || card.getType().equalsIgnoreCase(lastCard.getType()) || card.getType().equalsIgnoreCase("B"))
+            return true;
+
+        return false;
+    }
+
+    public int applyCard(Player player, Card card){
+        hiddenCards.add(lastCard);
+        player.getCards().remove(card);
+
+        //updating the board
+        color = card.getColor();
+        clockwise = card.getType().equals("10") != clockwise;
+        lastCard = card;
+
+        //A->1, B->11
+        if(card.getType().equals("A") || card.getType().equals("B")){
+            return card.getType().equals("A") ? 1 : 11;
+        }
+        return Integer.parseInt(card.getType());
+    }
+
+    public Card ponish() {
+        Card ponishCard = hiddenCards.get(rand.nextInt(hiddenCards.size()));
+        hiddenCards.remove(ponishCard);
+
+        return ponishCard;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

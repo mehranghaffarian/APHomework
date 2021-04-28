@@ -6,21 +6,19 @@ import java.util.Scanner;
 
 public class Main {
     public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
-    //A 2345678910 B C D
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter the number of players without you.");
+
+        System.out.println(ANSI_BLACK_BACKGROUND + ANSI_WHITE + "Hi, it is me mehran.\nLets play seven devils.");
+
+        System.out.println("Please enter the number of players without counting yourself.");
         int numberOfPlayers = scan.nextInt() + 1;
+
         System.out.println("If you want to play with bot enter 0, if you want to play with your friends enter 1.");
         int mode = scan.nextInt();
 
-        System.out.println(ANSI_BLACK_BACKGROUND + Color.GREEN);
         String[] types = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "C", "D"};
         Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
         ArrayList<Card> cards = new ArrayList<>();
@@ -28,9 +26,18 @@ public class Main {
         Random rand = new Random();
 
         //creating cards
-        for(int i = 0;i < 13;i++) {
-            for (int j = 0; j < 4; j++)
-                cards.add(new Card(types[i], colors[j]));
+        for(int i = 0;i < 4;i++) {
+            for (int j = 1; j < 10; j++) {
+                if(j == 1 || j == 6 || j == 7 || j == 9)
+                    cards.add(new SpecialCard(types[j], colors[i]));
+
+                cards.add(new UsualCard(types[j], colors[i]));
+            }
+
+            for(int j = 10;j < 13;j++)
+                cards.add(new SpecialCard(types[j], colors[i]));
+
+            cards.add(new SpecialCard("A", colors[i]));
         }
 
         //creating players
@@ -48,7 +55,13 @@ public class Main {
             }
             players.add(new Player(name, playerCards));
         }
+        Card lastCard = cardsToDivide.get(rand.nextInt(cards.size()));
+        cardsToDivide.remove(lastCard);
 
+        Game game = new Game(players, new Board(cards, cardsToDivide, true, lastCard.getColor(), lastCard));
 
+        game.sevenDevils();
+
+        System.out.println("I hope you have enjoyed the game");
     }
 }

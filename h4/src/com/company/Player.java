@@ -15,13 +15,12 @@ public class Player {
     }
 
     public Card choose(Board board){
-        for (Card card : cards) {
+        for (Card card : cards)
             card.display();
-            System.out.println(cards.indexOf(card) + 1);
-        }
-        System.out.println("Choose from indexes above.");
 
-        int index = scan.nextInt() + 1;
+        System.out.println("Enter the index of your card(count from left to right from 1 to end) or if you can not choose any card enter 0.");
+
+        int index = scan.nextInt() - 1;
 
         if(index >= 0 && index < cards.size()){
             Card card = cards.get(index);
@@ -29,15 +28,52 @@ public class Player {
             if(card.getColor() == board.getColor() || card.getType().equalsIgnoreCase(board.getLastCard().getType()) || card.getType().equalsIgnoreCase("B"))
                 return card;
         }
-        choose(board);
-        return null;
+        else if(index == -1){
+            for (int i = 0;i < cards.size();i++) {
+                if (board.isPlayable(cards.get(i))) {
+                    System.out.println("You can choose the card " + (i + 1));
+                    return choose(board);
+                }
+            }
+            return null;
+        }
+
+        return choose(board);
+    }
+
+    public Card chooseSeven(Board board, Game game){
+        System.out.println("Your in case of *_*sevenDevil*_* you can only choose seven or you will be ponished.");
+
+        for (Card card : cards)
+            card.display();
+
+        System.out.println("Choose from the above(enter the index(left to right->1 to end)) or if you can not enter 0");
+
+        int choice = scan.nextInt();
+
+        if(choice < cards.size() && choice >= 0 && cards.get(choice).getType().equals("7"))
+                return cards.get(choice);
+
+            else{
+                for(Card card : cards)
+                    if(card.getType().equals("7")) {
+                        System.out.println("You can choose the seven you have in your cards.");
+                        return chooseSeven(board, game);
+                    }
+                return null;
+            }
     }
 
     public String getName() {
         return name;
     }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
     public int cardsNumber(){
         return cards.size();
     }
+
 }
