@@ -21,18 +21,23 @@ public class Player {
         }
         System.out.println("Choose from indexes above.");
 
-        int index = scan.nextInt();
+        int index = scan.nextInt() + 1;
 
         if(index >= 0 && index < cards.size()){
             Card card = cards.get(index);
 
-            if(card.getColor() == board.getColor() || card.getType().equalsIgnoreCase(board.getLastCard().getType()) || card.getType().equalsIgnoreCase("Jack"))
+            if(card.getColor() == board.getColor() || card.getType().equalsIgnoreCase(board.getLastCard().getType()) || card.getType().equalsIgnoreCase("B"))
                 return card;
         }
+        choose(board);
         return null;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int cardsNumber(){
+        return cards.size();
     }
 }

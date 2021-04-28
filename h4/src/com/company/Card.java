@@ -17,30 +17,30 @@ public class Card {
     public void display(){
         if(color == Color.GREEN) {
             if (!type.equals("10"))
-                System.out.println(ANSI_GREEN + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
+                System.out.format(ANSI_GREEN + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
             else
-                System.out.println(ANSI_GREEN + "_______\n|10   |\n|     |\n|   10|\n|_____|");
+                System.out.format(ANSI_GREEN + "_______\n|10   |\n|     |\n|   10|\n|_____|");
         }
         if(color == Color.RED){
                 if(!type.equals("10"))
-                    System.out.println(ANSI_RED + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
+                    System.out.format(ANSI_RED + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
 
                 else
-                    System.out.println(ANSI_RED + "_______\n|10   |\n|     |\n|   10|\n|_____|");
+                    System.out.format(ANSI_RED + "_______\n|10   |\n|     |\n|   10|\n|_____|");
         }
         if(color == Color.YELLOW){
             if(!type.equals("10"))
-                System.out.println(ANSI_YELLOW + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
+                System.out.format(ANSI_YELLOW + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
 
             else
-                System.out.println(ANSI_YELLOW + "_______\n|10   |\n|     |\n|   10|\n|_____|");
+                System.out.format(ANSI_YELLOW + "_______\n|10   |\n|     |\n|   10|\n|_____|");
         }
         if(color == Color.BLUE){
             if(!type.equals("10"))
-                System.out.println(ANSI_BLUE + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
+                System.out.format(ANSI_BLUE + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|");
 
             else
-                System.out.println(ANSI_BLUE + "_______\n|10   |\n|     |\n|   10|\n|_____|");
+                System.out.format(ANSI_BLUE + "_______\n|10   |\n|     |\n|   10|\n|_____|");
         }
     }
 

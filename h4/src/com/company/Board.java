@@ -5,14 +5,16 @@ import java.util.Random;
 
 public class Board {
     private ArrayList<Card> inventory;
+    private ArrayList<Card> playerCards;
     private Boolean clockwise;
     private Color color;
     private Card lastCard;
     Random rand;
 
-    public Board(ArrayList<Card> inventory, Boolean clockwise, Color color, Card lastCard) {
+    public Board(ArrayList<Card> inventory, ArrayList<Card> playerCards, Color color, Card lastCard) {
         this.inventory = inventory;
-        this.clockwise = clockwise;
+        this.playerCards = playerCards;
+        clockwise = true;
         this.color = color;
         this.lastCard = lastCard;
         rand = new Random();
@@ -20,26 +22,26 @@ public class Board {
 
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    public int startGame(ArrayList<Player> players) throws InterruptedException {
-        System.out.println(ANSI_WHITE + "Lets decide who to start by Ace.");
+    public int startGame(int playersNumber) throws InterruptedException {
+        System.out.println(ANSI_WHITE + "Lets decide who to starts by Ace.");
 
         ArrayList<Card> cards = inventory;
 
-        for (int i = 0;!cards.isEmpty();i++, i = i % players.size()){
+        for (int i = 0;!cards.isEmpty();i++, i = i % playersNumber){
             int cardIndex = rand.nextInt(cards.size());
 
-            System.out.println(ANSI_WHITE + players.get(i).getName() + ":\n" + cards.get(cardIndex));
+            System.out.println(ANSI_WHITE  + "player" + i + ":\n" + cards.get(cardIndex));
             Thread.sleep(1000);
 
             if(cards.get(cardIndex).getType().equalsIgnoreCase("A")){
-                System.out.println(players.get(i).getName() + ":\nYou will start the game.");
+                System.out.println("player" + i + ":\nYou will start the game.");
 
                 return i;
             }
             else
                 cards.remove(cardIndex);
         }
-        return 0;
+        return -1;
     }
 
     public void display(){
