@@ -1,5 +1,9 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
 public class Card {
     private String type;
     private Color color;
@@ -15,34 +19,36 @@ public class Card {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    public void display(){
-        if(color == Color.GREEN) {
-            if (!type.equals("10"))
-                System.out.format(ANSI_GREEN + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|" + ANSI_WHITE);
-            else
-                System.out.format(ANSI_GREEN + "_______\n|10   |\n|     |\n|   10|\n|_____|" + ANSI_WHITE);
-        }
-        if(color == Color.RED){
-                if(!type.equals("10"))
-                    System.out.format(ANSI_RED + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|" + ANSI_WHITE);
+    public void displayCards(ArrayList<Card> cards){
+        HashMap<Color, String> colorsMap = new HashMap<>();
 
-                else
-                    System.out.format(ANSI_RED + "_______\n|10   |\n|     |\n|   10|\n|_____|" + ANSI_WHITE);
-        }
-        if(color == Color.YELLOW){
-            if(!type.equals("10"))
-                System.out.format(ANSI_YELLOW + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|" + ANSI_WHITE);
+        colorsMap.put(Color.RED, ANSI_RED);
+        colorsMap.put(Color.BLUE, ANSI_BLUE);
+        colorsMap.put(Color.GREEN, ANSI_GREEN);
+        colorsMap.put(Color.YELLOW, ANSI_YELLOW);
 
-            else
-                System.out.format(ANSI_YELLOW + "_______\n|10   |\n|     |\n|   10|\n|_____|" + ANSI_WHITE);
-        }
-        if(color == Color.BLUE){
-            if(!type.equals("10"))
-                System.out.format(ANSI_BLUE + "______\n|" + type + "   |\n|    |\n|   " + type + "|\n|____|" + ANSI_WHITE);
+            Random rand = new Random();
 
-            else
-                System.out.format(ANSI_BLUE + "_______\n|10   |\n|     |\n|   10|\n|_____|" + ANSI_WHITE);
-        }
+            for (int i = 1; i <= 5; i++) {
+                System.out.println();
+                for (int j = 0; j < cards.size(); j++) {
+                    System.out.format(colorsMap.get(cards.get(j).getColor()));
+
+                    if (i == 1)
+                        System.out.print("_______");
+                    else if (i == 2) {
+                        System.out.printf("|%s   |", !cards.get(j).getType().equals("10") ? cards.get(j).getType().concat(" ") : cards.get(j).getType());
+                    } else if (i == 3)
+                        System.out.print("|     |");
+                    else if (i == 4)
+                        System.out.printf("|   %2s|", cards.get(j).getType());
+                    else if (i == 5)
+                        System.out.print("|_____|");
+
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
     }
 
     public String getType() {

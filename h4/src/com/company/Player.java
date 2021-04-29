@@ -1,6 +1,8 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -17,10 +19,8 @@ public class Player {
     public Card choose(Board board){
         System.out.println(name);
 
-        for (Card card : cards) {
-            card.display();
-            System.out.println();
-        }
+        cards.get(0).displayCards(cards);
+
         board.display();
         System.out.println("Enter the index of your card(count from left to right from 1 to end) or if you can not choose any card enter 0.");
 
@@ -48,8 +48,7 @@ public class Player {
     public Card chooseSeven(Board board, Game game){
         System.out.println("Your in case of *_*sevenDevil*_* you can only choose seven or you will be ponished.");
 
-        for (Card card : cards)
-            card.display();
+        cards.get(0).displayCards(cards);
 
         System.out.println("Choose from the above(enter the index(left to right->1 to end)) or if you can not enter 0");
 
@@ -75,22 +74,4 @@ public class Player {
     public ArrayList<Card> getCards() {
         return cards;
     }
-
-    //for(int i = 1;i <= 5;i++){
-    //            System.out.println();
-    //            for(int j = 0;j < size;j++) {
-    //                if(i == 1)
-    //                System.out.printf("______");
-    //                else if (i == 2)
-    //                    System.out.printf("|%s   |", strs[rand.nextInt(strs.length)]);
-    //                else if(i == 3)
-    //                    System.out.printf("|    |");
-    //                else if(i == 4)
-    //                    System.out.printf("|   %s|", strs[rand.nextInt(strs.length)]);
-    //                else if(i == 5)
-    //                    System.out.print("|____|");
-    //
-    //                System.out.printf("  ");
-    //            }
-    //        }
 }

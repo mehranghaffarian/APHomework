@@ -80,22 +80,28 @@ public class Game {
                 return 0;
             }
             else if(mode == 2){
-                System.out.println("Please enter the number of the person you wat to give one of your card to.");
+                if(player.getCards().size() != 0) {
+                    System.out.println("Please enter the number of the person you wat to give one of your card to.");
 
-                for(int i = 1;i <= players.size();i++)
-                    System.out.println(i + ". " + players.get(i - 1).getName());
+                    for (int i = 1; i <= players.size(); i++)
+                        System.out.println(i + ". " + players.get(i - 1).getName());
 
-                int index = scan.nextInt() - 1;
+                    int index = scan.nextInt() - 1;
 
-                if(index >= 0 && index < players.size()){
-                    Card cardToGive = player.getCards().get(rand.nextInt(player.getCards().size()));
+                    if (index >= 0 && index < players.size()) {
+                        Card cardToGive = player.getCards().get(rand.nextInt(player.getCards().size()));
 
-                    players.get(index).getCards().add(cardToGive);
-                    player.getCards().remove(card);
+                        players.get(index).getCards().add(cardToGive);
+                        player.getCards().remove(card);
 
-                    System.out.println(players.get(index).getName() + " has gotten a random cart from you.");
+                        System.out.println(players.get(index).getName() + " has gotten a random cart from you.");
+                    }
+                    return 0;
                 }
-                return 0;
+                else{
+                    System.out.println("You are the winner: " + player.getName());
+                    calculateScores();
+                }
             }
             else if(mode == 7){
                 return (card.getColor() == Color.RED || card.getColor() == Color.BLUE) ? 2 : 4;
@@ -130,5 +136,9 @@ public class Game {
                 return true;
 
             return false;
+    }
+
+    public void calculateScores(){
+        
     }
 }

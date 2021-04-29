@@ -33,8 +33,9 @@ public class Board {
 
             System.out.println(ANSI_WHITE  + players.get(i).getName());
 
-            cards.get(cardIndex).display();
-            System.out.println();
+            ArrayList<Card> printCards = new ArrayList<>();
+            printCards.add(cards.get(cardIndex));
+            cards.get(cardIndex).displayCards(printCards);
 
             Thread.sleep(1000);
 
@@ -49,8 +50,9 @@ public class Board {
     public void display(){
         System.out.println(ANSI_WHITE + "Board is as below\n" + (clockwise ? "Clockwise" : "Counterclockwise") + "\nRequired color: " + color);
 
-        lastCard.display();
-        System.out.println();
+        ArrayList<Card> printCards = new ArrayList<>();
+        printCards.add(lastCard);
+        lastCard.displayCards(printCards);
     }
 
     public Color getColor() {
