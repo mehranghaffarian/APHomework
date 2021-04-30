@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     private ArrayList<Player> players;
@@ -58,11 +55,15 @@ public class Game {
         }
     }
 
-    public int applyCard(Player player, Card card){
+    public int applyCard(Player player, Card card) throws InterruptedException {
         if(card == null){
             player.getCards().add((board.ponish()));
 
-            System.out.println("You have gotten a new card, you can choose again.");
+            if(player instanceof Bot)
+                System.out.println(player.getName() + " has gotten a new card, it can choose again.");
+            else
+                System.out.println("You have gotten a new card, you can choose again.");
+
             Card chosenCard = player.choose(board);
 
             return 0;
@@ -99,8 +100,8 @@ public class Game {
                     return 0;
                 }
                 else{
-                    System.out.println("You are the winner: " + player.getName());
                     calculateScores();
+                    return -1;
                 }
             }
             else if(mode == 7){
@@ -139,6 +140,50 @@ public class Game {
     }
 
     public void calculateScores(){
-        
+        HashMap<Player, Integer> scores = new HashMap<>();
+
+        for(Player player : players){
+            int score = 0;
+
+            for(Card card : player.getCards()){
+                if(card.getType().equals("2") || card.getType().equals("3") || card.getType().equals("4") || card.getType().equals("5") || card.getType().equals("6") || card.getType().equals("8") || card.getType().equals("9") || card.getType().equals("10"))
+                    score += Integer.parseInt(card.getType());
+                else if(card.getType().equals("C"))
+                    score += 12;
+                else if(card.getType().equals("D"))
+                    score += 13;
+                else if(card.getType().equals("A"))
+                    score += 11;
+                else if(card.getType().equals("B"))
+                    score += 12;
+                else if(card.getType().equals("7") && card.getColor() == Color.YELLOW)
+                    score += 15;
+                else
+                    score += 10;
+            }
+            scores.put(player, score);
+        }
+        ArrayList<Integer> scoresArray = new ArrayList<>();
+
+        for(Player player : players){
+            scoresArray.add(scores.size(), scores.get(player));
+        }
+        for(int i = 0;i < players.size();i++){
+            for(int j = 0;j < players.size() - 1;j++){
+                if(scoresArray.get(j) > scoresArray.get(j + 1)){
+                    Integer temp = scoresArray.get(j);
+                    scoresArray.set(j, scoresArray.get(j + 1));
+                    scoresArray.set(j + 1, temp);
+
+                    Player tempPlayer = players.get(j);
+                    players.set(j, players.get(j + 1));
+                    players.set(j + 1, tempPlayer);
+                }
+            }
+        }
+        int rank = 0;
+
+        for (Player player : players)
+            System.out.println((++rank) + ".\n" + player + "\n\n");
     }
 }

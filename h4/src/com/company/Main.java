@@ -16,9 +16,6 @@ public class Main {
         System.out.println("Please enter the number of players without counting yourself.");
         int numberOfPlayers = scan.nextInt() + 1;
 
-        System.out.println("If you want to play with bot enter 0, if you want to play with your friends enter 1.");
-        int mode = scan.nextInt();
-
         String[] types = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "C", "D"};
         Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
         ArrayList<Card> cards = new ArrayList<>();
