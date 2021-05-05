@@ -22,7 +22,7 @@ public class Bot extends Player {
         board.display();
 
         System.out.println("\n\n" + super.getName() + " is choosing....");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         for (int i = 0; i < super.getCards().size(); i++) {
             if (board.isPlayable(super.getCards().get(i))) {
@@ -31,7 +31,7 @@ public class Bot extends Player {
                 ArrayList<Card> card = new ArrayList<>();
                 card.add(super.getCards().get(i));
                 super.getCards().get(i).displayCards(card);
-                Thread.sleep(1000);
+                Thread.sleep(4000);
 
                 return super.getCards().get(i);
             }
@@ -51,6 +51,7 @@ public class Bot extends Player {
             if (super.getCards().get(i).getType().equals("7")) {
                 return super.getCards().get(i);
             }
+
         return null;
     }
 }

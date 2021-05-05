@@ -89,7 +89,16 @@ public class Main {
 
         cardsToDivide.remove(lastCard);
 
-        Game game = new Game(players, new Board(cards, cardsToDivide, true, lastCard.getColor(), lastCard));
+        ArrayList<Player> randomOrder = new ArrayList<>();
+
+        while(players.size() != 0){
+            int index = rand.nextInt(players.size());
+
+            randomOrder.add(players.get(index));
+            players.remove(index);
+        }
+
+        Game game = new Game(randomOrder, new Board(cards, cardsToDivide, true, lastCard.getColor(), lastCard));
 
         game.sevenDevils();
 

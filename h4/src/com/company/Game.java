@@ -33,6 +33,10 @@ public class Game {
         while (!isEnd()) {
             int mode = applyCard(players.get(playerToPlay), players.get(playerToPlay).choose(board)), ponish = 0;//defining the effect of the card, ponish -> for case of seven
 
+            if (!isEnd() && mode == 8) {//the award for 8
+                while (!isEnd() && mode == 8)
+                    mode = applyCard(players.get(playerToPlay), players.get(playerToPlay).choose(board));
+            }
             if (!isEnd() && (mode == 7 || mode == 77)) {//77 -> yellow seven with 4 ponish, 7 -> not yellow sevens with 2 ponish
                 while (mode == 7 || mode == 77) {
                     ponish += mode == 7 ? 2 : 4;
@@ -49,11 +53,10 @@ public class Game {
                         mode = 0;
                     } else if (card.getType().equals("7"))
                         mode = applyCard(players.get(playerToPlay), card);
+
+                    Thread.sleep(2000);
                 }
                 ponish = 0;
-            } else if (!isEnd() && mode == 8) {//the award for 8
-                while (!isEnd() && mode == 8)
-                    mode = applyCard(players.get(playerToPlay), players.get(playerToPlay).choose(board));
             }
 
             playerToPlay = (playerToPlay + counterclockwise + players.size()) % players.size();
@@ -119,7 +122,7 @@ public class Game {
                         players.get(index).getCards().add(cardToGive);
                         player.getCards().remove(cardToGive);
 
-                        System.out.println(players.get(index).getName() + " has gotten a random cart from you.");
+                        System.out.println(players.get(index).getName() + " has gotten a random cart from " + player.getName());
                     } else {
                         boolean isCorrect = false;
 
@@ -241,11 +244,14 @@ public class Game {
         }
         int rank = 0;
 
-        for (Player player : players) {
-            System.out.println((++rank) + ". " + player.getName() + "\nScore: " + scores.get(player) + "\nCards:\n");
+        for (int i = 0;i < players.size();i++) {
+            System.out.println((++rank) + ". " + players.get(i).getName() + "\nScore: " + scores.get(players.get(i)) + "\nCards:\n");
 
-            if (player.getCards().size() != 0)
-                player.getCards().get(0).displayCards(player.getCards());
+            if(i < players.size() - 1 && scoresArray.get(i + 1) == scoresArray.get(i))
+                rank--;
+
+            if (players.get(i).getCards().size() != 0)
+                players.get(i).getCards().get(0).displayCards(players.get(i).getCards());
         }
     }
 }
