@@ -13,7 +13,7 @@ public abstract class NewsChannel {
 
     public abstract void showChannelGoal();
 
-    public boolean addFollower(Follower follower) {
+    public boolean followerJoin(Follower follower) {
         boolean isIn = false;
 
         for(Follower follow : followers)
@@ -28,7 +28,7 @@ public abstract class NewsChannel {
         }
     }
 
-    public boolean removeFollower(Follower follower) {
+    public boolean followerLeft(Follower follower) {
         boolean isIn = false;
 
         for(Follower follow : followers)
@@ -54,13 +54,13 @@ public abstract class NewsChannel {
             return false;
         else {
             news.add(newNews);
-            tellFollowers();
+            tellFollowers(newNews);
             return true;
         }
     }
 
-    public void tellFollowers(){
+    public void tellFollowers(News newNews){
         for(Follower follower : followers)
-            follower.update(news.get(news.size()));
+            follower.update(newNews);
     }
 }

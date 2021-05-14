@@ -11,5 +11,5 @@ public class ClubChannel extends NewsChannel{
     }
 
     @Override
-    public void showChannelGoal() {System.out.println("This channel is designed for " + club.getName() + " news.");}
+    public void showChannelGoal() {System.out.println("Club channel is designed for " + club.getName() + " news.\n");}
 }

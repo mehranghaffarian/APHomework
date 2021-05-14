@@ -11,8 +11,9 @@ public class Follower {
     }
 
     public void update(News news){
-        System.out.println(firstName + " " + lastName + " you have a new news:");
+        System.out.println("\n" + firstName + " " + lastName + " you have a new news:");
         news.display();
+        System.out.println();
     }
 
     public long getId(){return id;}

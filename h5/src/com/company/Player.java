@@ -13,5 +13,8 @@ public class Player {
         this.age = age;
     }
 
-    public String getName(){return firstName + " " + lastName;}
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
