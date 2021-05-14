@@ -2,7 +2,10 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+/**
+ * reporting news system for a club and its players and matches news
+ * @author mehranghaffarian
+ * */
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
@@ -27,13 +30,13 @@ public class Main {
         matchesChannel.showChannelGoal();
 
         //7 followers for any statue
-        Follower follower1 = new Follower("Mehran", "Ghaffarian");
-        Follower follower2 = new Follower("Me" , "Gh");
-        Follower follower3 = new Follower("Meh", "Gha");
-        Follower follower4 = new Follower("Mehr", "Ghaf");
-        Follower follower5 = new Follower("Mehra", "Ghaff");
-        Follower follower6 = new Follower("Mehra", "Ghaffar");
-        Follower follower7 = new Follower("Mehra", "Ghaffaria");
+        Follower follower1 = new Follower("Mehran", "Ghaffarian", 1);
+        Follower follower2 = new Follower("Me" , "Gh", 2);
+        Follower follower3 = new Follower("Meh", "Gha", 3);
+        Follower follower4 = new Follower("Mehr", "Ghaf", 4);
+        Follower follower5 = new Follower("Mehra", "Ghaff", 5);
+        Follower follower6 = new Follower("Mehra", "Ghaffar", 6);
+        Follower follower7 = new Follower("Mehra", "Ghaffaria", 7);
 
         playerChannel.followerJoin(follower1);
         playerChannel.followerJoin(follower2);
@@ -50,10 +53,12 @@ public class Main {
         matchesChannel.followerJoin(follower7);
         matchesChannel.followerJoin(follower6);
 
+        //new news to to check accuracy(contents are not written purposefully):D :D
         playerChannel.setNews(new News("Suspicious Death", "Bardia has passed away today, doctors doubt it was because of heart attack or murder."));
-        clubChannel.setNews(new News("New TA", "The club signed new contract with Parham as the goalkeeper."));
+        clubChannel.setNews(new News("New player", "The club signed new contract with Parham as the new goalkeeper."));
         matchesChannel.setNews(new News("*_*Derbi*_*", "Tomorrow AP TAs will play across WorkShop TAs."));
 
+        //followers can leave the channels they have joined before
         playerChannel.followerLeft(follower1);
         clubChannel.followerLeft(follower5);
         matchesChannel.followerLeft(follower7);
@@ -61,14 +66,9 @@ public class Main {
         Thread.sleep(5000);
         System.out.println("\n\n\n\n");
 
-        News news = new News("Suspicious Death", "Saman has passed away today, doctors doubt it was because of heart attack or murder.");
-
-        playerChannel.setNews(news);
-
-        news = new News("New TA", "The club signed new contract with Sina as the goalkeeper.");
-        clubChannel.setNews(news);
-
-        news = new News("*_*Derbi*_*", "Tomorrow AP TAs will play across Math TAs.");
-        matchesChannel.setNews(news);
+        //new news for checking accuracy after when followers left some channels(contents are not written purposefully):D :D
+        playerChannel.setNews(new News("Suspicious Death", "Saman has passed away today, doctors doubt it was because of heart attack or murder."));
+        clubChannel.setNews(new News("New TA", "The club signed new contract with Sina as the goalkeeper."));
+        matchesChannel.setNews(new News("*_*Derbi*_*", "Tomorrow AP TAs will play across Math TAs."));
     }
 }

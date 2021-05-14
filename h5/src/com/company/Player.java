@@ -1,5 +1,8 @@
 package com.company;
-
+/**
+ * simulates player of the club and its identity
+ * @author mehranghaffarian
+ * */
 public class Player {
     private String firstName;
     private String lastName;
@@ -12,9 +15,9 @@ public class Player {
         this.id = id;
         this.age = age;
     }
-
+    /**
+     * @return the player name
+     * */
     @Override
-    public String toString() {
-        return firstName + " " + lastName;
-    }
+    public String toString() {return firstName + " " + lastName;}
 }

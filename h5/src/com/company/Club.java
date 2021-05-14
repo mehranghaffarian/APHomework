@@ -1,7 +1,10 @@
 package com.company;
 
 import java.util.ArrayList;
-
+/**
+ * simulating a club
+ * @author mehranghaffarian
+ * */
 public class Club {
     private String name;
     private ArrayList<Match> matches;
@@ -12,6 +15,8 @@ public class Club {
         this.matches = matches;
         this.players = players;
     }
-
-    public String getName(){return name;}
+    /**
+     * displays the name of the club
+     * */
+    public void display(){System.out.print(name);}
 }
